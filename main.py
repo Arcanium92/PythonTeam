@@ -16,7 +16,7 @@ def main():
 
     print("=== Library Catalog ===")
     for book in catalog.books:
-        print(f"{book.title} by {book.author} \u2014 {book.available_copies}/{book.total_copies} available")
+        print(f"{book.title} by {book.author} \u2014 ISBN# {book.isbn} {book.available_copies}/{book.total_copies} available")
 
     print()
     print("Checking out 'Clean Code'...")
