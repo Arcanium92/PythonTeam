@@ -15,33 +15,24 @@ def main():
     catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
 
     print("=== Library Catalog ===")
-    # Adding user input option to view catalog
+    # Adding user input option to view catalog meant to add ahead of Micah's change to search by ISBN
     print()
     selection = input("Would you like to view current book listings? (Y: view listings / N: exit): ")
-    if selection.lower() == "y":
-        print()
-        print("Current selections: ")
-        print()
-        for book in catalog.books:
-            print(f"{book.title} by {book.author} \u2014 ISBN# {book.isbn} {book.available_copies}/{book.total_copies} available")
+    while selection.strip().lower() not in "n":
+        if selection.strip().lower() in "y":
             print()
-    else:
-        print("See you next time!")
-print()
-
-# Commented out existing code incase these display options are more desired.
-    # for book in catalog.books:
-    #     print(f"{book.title} by {book.author} \u2014 {book.available_copies}/{book.total_copies} available")
-
-    # print()
-    # print("Checking out 'Clean Code'...")
-    # catalog.check_out_book("9780132350884")
-
-    # clean_code = catalog.find_by_isbn("9780132350884")
-    # print(f"'{clean_code.title}' now has {clean_code.available_copies}/{clean_code.total_copies} available.")
-
-    # print()
-    # print(f"Total copies available across catalog: {catalog.total_available_copies()}")
+            print("Current selections: ")
+            print()
+            for book in catalog.books:
+                print(f"{book.title} by {book.author} \u2014 ISBN# {book.isbn} {book.available_copies}/{book.total_copies} available")
+                print()
+        else:
+            print("Invalid input. Please select Y or N.")
+        
+        print()
+        selection = input("Would you like to view current book listings? (Y/N): ")
+    print()
+    print("See you next time!")
 
 if __name__ == "__main__":
     main()
