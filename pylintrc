@@ -1,0 +1,29 @@
+[MASTER]
+# Fail if overall score falls under this threshold (also set in workflow with --fail-under)
+fail-under=7.0
+
+[MESSAGES CONTROL]
+# Disable messages that are too noisy for a student project
+# C0114 = missing module docstring (disable globally, require on classes/functions only)
+# C0115 = missing class docstring
+# C0116 = missing function/method docstring
+# W0511 = fixme/todo comments (allow TODOs in student projects)
+disable=C0114,W0511
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=120
+
+# Expected indentation amount (spaces)
+indent-string='    '
+
+[BASIC]
+# Minimum length for variable names (allow short loop vars like i, x)
+good-names=i,j,k,x,y,n,f,e,_
+
+[DESIGN]
+# Maximum number of arguments for function/method (relax slightly for student projects)
+max-args=8
+
+# Maximum number of statements in a function/method
+max-statements=50
