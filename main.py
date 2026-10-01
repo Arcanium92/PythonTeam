@@ -19,6 +19,24 @@ def main():
         print(f"{book.title} by {book.author} \u2014 {book.available_copies}/{book.total_copies} available")
 
     print()
+    query = input("Search for a book by title: ").strip()
+    results = catalog.search_by_title(query)
+
+    def search_by_title(self, title_query):
+    normalized = title_query.strip().lower()
+    return [
+        book for book in self.books
+        if normalized in book.title.lower()
+    ]
+
+    if not results:
+        print("No books found with that title.")
+    else:
+        print("\nSearch Results:")
+        for book in results:
+            print(f"{book.title} by {book.author} — {book.available_copies}/{book.total_copies} available")
+
+    print()
     print("Checking out 'Clean Code'...")
     catalog.check_out_book("9780132350884")
 
