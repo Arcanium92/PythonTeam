@@ -19,6 +19,9 @@ def main():
         print(f"{book.title} by {book.author} \u2014 {book.available_copies}/{book.total_copies} available")
 
     print()
+    print("Enter ISBN you want to check out:")
+    isbn = input()
+    catalog.check_out_book(isbn)
     query = input("Search for a book by title: ").strip()
     results = catalog.search_by_title(query)
 
@@ -36,12 +39,8 @@ def main():
         for book in results:
             print(f"{book.title} by {book.author} — {book.available_copies}/{book.total_copies} available")
 
-    print()
-    print("Checking out 'Clean Code'...")
-    catalog.check_out_book("9780132350884")
-
-    clean_code = catalog.find_by_isbn("9780132350884")
-    print(f"'{clean_code.title}' now has {clean_code.available_copies}/{clean_code.total_copies} available.")
+    checked_out = catalog.find_by_isbn(isbn)
+    print(f"'{checked_out.title}' now has {checked_out.available_copies}/{checked_out.total_copies} available.")
 
     print()
     print(f"Total copies available across catalog: {catalog.total_available_copies()}")
