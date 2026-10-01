@@ -15,7 +15,6 @@ def main():
     catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
 
     print("=== Library Catalog ===")
-    # Adding user input option to view catalog meant to add ahead of Micah's change to search by ISBN
     print()
     selection = input("Would you like to view current book listings? (Y: view listings / N: exit): ")
     while selection.strip().lower() not in "n":
@@ -26,6 +25,7 @@ def main():
             for book in catalog.books:
                 print(f"{book.title} by {book.author} \u2014 ISBN# {book.isbn} {book.available_copies}/{book.total_copies} available")
                 print()
+
         else:
             print("Invalid input. Please select Y or N.")
         
