@@ -22,6 +22,7 @@ class Catalog:
             raise RuntimeError(f"A book with ISBN '{book.isbn}' already exists in the catalog.")
         self._books.append(book)
 
+    # Build method for ISBN search
     def find_by_isbn(self, isbn: str) -> Book | None:
         return next((b for b in self._books if b.isbn == isbn), None)
 

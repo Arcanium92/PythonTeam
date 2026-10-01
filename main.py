@@ -15,10 +15,22 @@ def main():
     catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
 
     print("=== Library Catalog ===")
-    for book in catalog.books:
-        print(f"{book.title} by {book.author} \u2014 {book.available_copies}/{book.total_copies} available")
-
+    # Adding user input option to view catalog meant to add ahead of Micah's change to search by ISBN
     print()
+    selection = input("Would you like to view current book listings? (Y: view listings / N: exit): ")
+    while selection.strip().lower() not in "n":
+        if selection.strip().lower() in "y":
+            print()
+            print("Current selections: ")
+            print()
+            for book in catalog.books:
+                print(f"{book.title} by {book.author} \u2014 ISBN# {book.isbn} {book.available_copies}/{book.total_copies} available")
+                print()
+        else:
+            print("Invalid input. Please select Y or N.")
+        
+        print()
+        selection = input("Would you like to view current book listings? (Y/N): ")
     print("Enter ISBN you want to check out:")
     isbn = input()
     catalog.check_out_book(isbn)
@@ -43,8 +55,7 @@ def main():
     print(f"'{checked_out.title}' now has {checked_out.available_copies}/{checked_out.total_copies} available.")
 
     print()
-    print(f"Total copies available across catalog: {catalog.total_available_copies()}")
-
+    print("See you next time!")
 
 if __name__ == "__main__":
     main()
