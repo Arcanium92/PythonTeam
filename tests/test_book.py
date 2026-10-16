@@ -11,17 +11,14 @@ from library_app.book import Book
 def test_check_out_reduces_available_copies_by_one():
     # Arrange
     book = Book("Sample Title", "Sample Author", "0000000000000", 3)
-
     # Act
     book.check_out()
-
     # Assert
     assert book.available_copies == 2
 
 def test_check_out_raises_error_when_no_copies_available():
     # Arrange
     book = Book("Title", "Author", "123", 0)
-
     # Act / Assert
     with pytest.raises(RuntimeError):
         book.check_out()
@@ -45,3 +42,17 @@ def test_is_available_returns_false_when_no_copies():
 def test_book_raises_value_error_for_empty_title():
     with pytest.raises(ValueError):
         Book("", "Author", "123", 3)
+
+def test_throw_error_on_checkout_when_avaiable_copies_is_0():
+    # Arrange
+    book = Book("Title", "Author", "123", 0)
+    # Act / Assert
+    with pytest.raises(RuntimeError):
+        book.check_out()
+
+def test_return_book_raises_error_when_all_copies_already_returned():
+    # Arrange
+    book = Book("Title", "Author", "123", 3)
+    # Act / Assert
+    with pytest.raises(RuntimeError):
+        book.return_book()
