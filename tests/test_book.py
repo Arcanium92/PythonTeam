@@ -6,6 +6,7 @@ To run these tests: open a terminal in the project root and run `pytest`.
 """
 import pytest
 from library_app.book import Book
+from datetime import datetime, timedelta
 
 
 def test_check_out_reduces_available_copies_by_one():
@@ -56,3 +57,26 @@ def test_return_book_raises_error_when_all_copies_already_returned():
     # Act / Assert
     with pytest.raises(RuntimeError):
         book.return_book()
+
+def test_checkout_with_due_date_records_due_date():
+    # Arrange
+    book = Book("Clean Code", "Robert C. Martin", "9780132350884", 2)
+    # Act
+    book.check_out()
+    # Assert
+    assert book.due_date == book.checkout_date + timedelta(days=14)
+
+def test_book_is_overdue_when_due_date_is_past():
+    # Arrange
+    book = Book("Title", "Author", "123", 2)
+    book.due_date = datetime.now() - timedelta(days=1)
+    # Assert
+    assert book.is_overdue() == True
+
+def test_book_is_not_overdue_when_due_date_is_future():
+    # Arrange
+    book = Book("Title", "Author", "123", 2)
+    book.due_date = datetime.now() + timedelta(days=14)
+    # Assert
+    assert book.is_overdue() == False
+
