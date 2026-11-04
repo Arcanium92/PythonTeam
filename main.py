@@ -10,6 +10,57 @@ from library_app.reservation import reservation_menu
 
 def checkout_test(catalog):
     """The basic checkout test: view listings, check out a book, search by title."""
+from library_app.user import User
+
+
+def main():
+
+    users = {}
+
+    print("=== Library Management System ===")
+    print()
+
+    # Account Menu
+    while True:
+        print("1. Create Account")
+        print("2. Login")
+        print("3. Exit")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            name = input("Enter your name: ").strip()
+
+            if name in users:
+                print("Account already exists.")
+            else:
+                users[name] = User(name)
+                print(f"Account created for {name}!")
+
+        elif choice == "2":
+            name = input("Enter your name: ").strip()
+
+            if name not in users:
+                print("Account not found.")
+                continue
+
+            current_user = users[name]
+            print(f"Welcome, {current_user.name}!")
+            break
+
+        elif choice == "3":
+            print("Goodbye!")
+            return
+
+        else:
+            print("Invalid selection.")
+
+    catalog = Catalog()
+
+    catalog.add_book(Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3))
+    catalog.add_book(Book("Clean Code", "Robert C. Martin", "9780132350884", 2))
+    catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
+
     print("=== Library Catalog ===")
     print()
     selection = input("Would you like to view current book listings? (Y: view listings / N: exit): ")
