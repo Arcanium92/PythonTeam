@@ -44,27 +44,17 @@ class Reservation:
         """Accept reservations ready to be checked out"""
         if Book.is_available:
             self.status = ReservationStatus.COMPLETE
+
 def view_reservations(reservations):
-
     """Prints every reservation made so far."""
-
     print()
-
     if not reservations:
-
         print("No reservations yet.")
-
         return
 
     for number, reservation in enumerate(reservations, start=1):
-
         print(f"{number}. ISBN# {reservation.isbn} | {reservation.customer_name} | "
-
             f"{reservation.status.value} | {reservation.created_at:%Y-%m-%d %H:%M}")
-
-
-
-
 
 def make_reservation(catalog, reservations):
 
@@ -82,10 +72,6 @@ def make_reservation(catalog, reservations):
         return
     print("Reservation created.")
 
-
-
-
-
 def cancel_reservation(reservations):
     """Asks which reservation to cancel (by its number in the list)."""
     view_reservations(reservations)
@@ -102,16 +88,10 @@ def cancel_reservation(reservations):
         return
     print("Reservation cancelled.")
 
-
-
-
-
 def reservation_menu(catalog, reservations):
 
     """Menu system for members to manage their reservations"""
-
     while True:
-
         print()
         print("  Reservation Manager  ")
         print("-----------------------")
@@ -121,8 +101,6 @@ def reservation_menu(catalog, reservations):
         print("(4.) Return to Main Menu")
         print("-----------------------")
         choice = input("Select an option: ").strip()
-
-
 
         if choice == "1":
             view_reservations(reservations)
@@ -134,21 +112,3 @@ def reservation_menu(catalog, reservations):
             return
         else:
             print("Invalid input. Please select 1-4.")
-
-
-#     """Menu system for members to manage their reservations"""
-#     @property
-#     def reservation_menu(Reservation):
-#         """Diplays menu to select different reservation options"""
-#         while True:
-#             print("  Reservation Manager  ")
-#             print("-----------------------")
-#             print("-")
-#             print("(1.) View Reservations ")
-#             print("-")
-#             print("(2.)  ")
-#             print("-")
-#             print("(3.) Return to Catalog")
-#             print("-")
-#             print("(4.)")
-#             print("-")
