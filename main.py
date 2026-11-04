@@ -5,9 +5,51 @@ Run with: python main.py
 
 from library_app.book import Book
 from library_app.catalog import Catalog
+from library_app.user import User
 
 
 def main():
+
+    users = {}
+
+    print("=== Library Management System ===")
+    print()
+
+    # Account Menu
+    while True:
+        print("1. Create Account")
+        print("2. Login")
+        print("3. Exit")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            name = input("Enter your name: ").strip()
+
+            if name in users:
+                print("Account already exists.")
+            else:
+                users[name] = User(name)
+                print(f"Account created for {name}!")
+
+        elif choice == "2":
+            name = input("Enter your name: ").strip()
+
+            if name not in users:
+                print("Account not found.")
+                continue
+
+            current_user = users[name]
+            print(f"Welcome, {current_user.name}!")
+            break
+
+        elif choice == "3":
+            print("Goodbye!")
+            return
+
+        else:
+            print("Invalid selection.")
+
     catalog = Catalog()
 
     catalog.add_book(Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3))
