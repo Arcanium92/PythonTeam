@@ -1,4 +1,5 @@
 from library_app.user import User
+import pytest
 
 def test_smoke_user_can_login():
     """ Tests user login capability """
