@@ -2,6 +2,7 @@ from library_app.reservation import (
     Reservation, ReservationStatus, view_reservations,
     make_reservation, cancel_reservation, reservation_menu
 )
+import pytest
 
 def test_new_reservation_starts_with_pending_status():
     # Arrange
