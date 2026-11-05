@@ -55,11 +55,38 @@ def main():
         else:
             print("Invalid selection.")
 
-    catalog = Catalog()
+        reservations = []
 
-    catalog.add_book(Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3))
-    catalog.add_book(Book("Clean Code", "Robert C. Martin", "9780132350884", 2))
-    catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
+    while True:
+        print()
+        print("  Library Main Menu  ")
+        print("---------------------")
+        print("(1.) Checkout Test")
+        print("(2.) Manage Reservations")
+        print("(3.) Exit")
+        print("---------------------")
+        choice = input("Select an option: ").strip()
+
+        catalog = Catalog()
+
+        catalog.add_book(Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3))
+        catalog.add_book(Book("Clean Code", "Robert C. Martin", "9780132350884", 2))
+        catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
+
+
+        if choice == "1":
+            print()
+            checkout_test(catalog)
+        elif choice == "2":
+            reservation_menu(catalog, reservations)
+        elif choice == "3":
+            print()
+            print("See you next time!")
+            break
+        else:
+            print("Invalid input. Please select 1, 2, or 3.")
+
+
 
     print("=== Library Catalog ===")
     print()
@@ -98,38 +125,6 @@ def main():
 
     checked_out = catalog.find_by_isbn(isbn)
     print(f"'{checked_out.title}' now has {checked_out.available_copies}/{checked_out.total_copies} available.")
-
-
-def main():
-    catalog = Catalog()
-
-    catalog.add_book(Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3))
-    catalog.add_book(Book("Clean Code", "Robert C. Martin", "9780132350884", 2))
-    catalog.add_book(Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1))
-
-    reservations = []
-
-    while True:
-        print()
-        print("  Library Main Menu  ")
-        print("---------------------")
-        print("(1.) Checkout Test")
-        print("(2.) Manage Reservations")
-        print("(3.) Exit")
-        print("---------------------")
-        choice = input("Select an option: ").strip()
-
-        if choice == "1":
-            print()
-            checkout_test(catalog)
-        elif choice == "2":
-            reservation_menu(catalog, reservations)
-        elif choice == "3":
-            print()
-            print("See you next time!")
-            break
-        else:
-            print("Invalid input. Please select 1, 2, or 3.")
 
 if __name__ == "__main__":
     main()
