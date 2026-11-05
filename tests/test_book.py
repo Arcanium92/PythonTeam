@@ -79,4 +79,3 @@ def test_book_is_not_overdue_when_due_date_is_future():
     book.due_date = datetime.now() + timedelta(days=14)
     # Assert
     assert book.is_overdue() == False
-
