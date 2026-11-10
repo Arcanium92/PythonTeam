@@ -22,21 +22,21 @@ class OverdueReport:
     def __init__(self, statuses):
         self.statuses = statuses
 
-    def get_overdue_books(self, statuses):
+    def get_overdue_books(self):
         return [
-            statuses.book
+            status.book
             for status in self.statuses
             if status.is_overdue()
         ]
 
     def overdue_count(self):
         """ Returns total number of overdue books """
-        return len(self.get_overdue_book())
+        return len(self.get_overdue_books())
 
     def overdue_members(self):
         """ Lists names of members with overdue books """
         return {
             status.user.name
-            for status in self.status
+            for status in self.statuses
             if status.is_overdue()
         }
