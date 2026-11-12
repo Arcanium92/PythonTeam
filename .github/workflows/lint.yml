@@ -1,4 +1,4 @@
-name: Lint (Python)
+name: CI (Python)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  pylint:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pylint
+          pip install pylint pytest
           pip install -r requirements.txt
 
       - name: Run Pylint
         run: pylint library_app/ --fail-under=7.0
+
+      - name: Run tests
+        run: pytest --tb=short
