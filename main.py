@@ -5,13 +5,15 @@ Run with: python main.py
 
 from library_app.book import Book
 from library_app.catalog import Catalog
+from library_app.reportsSubMenu import reports_menu
 from library_app.reservation import reservation_menu
 from library_app.user import User
-
+from library_app.book_status import OverdueReport
 
 def main():
-
     users = {}
+    statuses = []
+
 
     print("=== Library Management System ===")
     print()
@@ -54,12 +56,14 @@ def main():
         reservations = []
 
     while True:
+
         print()
         print("  Library Main Menu  ")
         print("---------------------")
         print("(1.) Checkout Test")
         print("(2.) Manage Reservations")
-        print("(3.) Exit")
+        print("(3.) View reports")
+        print("(4.) Exit")
         print("---------------------")
         choice = input("Select an option: ").strip()
 
@@ -76,12 +80,14 @@ def main():
         elif choice == "2":
             reservation_menu(catalog, reservations)
         elif choice == "3":
+            report = OverdueReport(statuses)
+            reports_menu(report, reservations)
+        elif choice == "4":
             print()
             print("See you next time!")
             break
         else:
             print("Invalid input. Please select 1, 2, or 3.")
-
 
 
     # print("=== Library Catalog ===")
