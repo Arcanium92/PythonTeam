@@ -11,11 +11,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.12'
+
+  - name: Install dependencies
+    run: |
+      pip install pylint pytest
+      pip install -r requirements.txt
 
       - name: Install dependencies
         run: |
@@ -27,3 +35,8 @@ jobs:
 
       - name: Run tests
         run: python -m pytest --tb=short
+  - name: Run Pylint
+    run: pylint library_app/ --fail-under=7.0
+
+  - name: Run tests
+    gitrun: python -m pytest --tb=short
