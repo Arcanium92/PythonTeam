@@ -26,4 +26,4 @@ steps:
     run: pylint library_app/ --fail-under=7.0
 
   - name: Run tests
-    gitrun: pytest --tb=short
+    gitrun: python -m pytest --tb=short
