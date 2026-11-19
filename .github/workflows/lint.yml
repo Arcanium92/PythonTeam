@@ -28,7 +28,7 @@ jobs:
         run: pylint library_app/ --fail-under=7.0
 
       - name: Run tests
-        run: pytest --tb=short
+        run: python -m pytest --tb=short
 
   dependency-scan:
     runs-on: ubuntu-latest
