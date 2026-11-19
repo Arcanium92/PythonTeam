@@ -5,10 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,8 +23,29 @@ jobs:
         run: |
           pip install pylint pytest
           pip install -r requirements.txt
+
       - name: Run Pylint
         run: pylint library_app/ --fail-under=7.0
 
       - name: Run tests
-        run: python -m pytest --tb=short
+        run: pytest --tb=short
+
+  dependency-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pip-audit
+        run: |
+          pip install pip-audit
+          pip-audit
